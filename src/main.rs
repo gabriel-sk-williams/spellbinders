@@ -77,11 +77,13 @@ fn find_chain(mut sign: String, spell: String, binder: HashMap<String, String>) 
 
     for n in 0..cap-1 {
         let sub = sign.get_mut(n..cap).map(|s| &*s).unwrap();
-        if n == 0 { println!("{}   {}", sub, spell) }; 
-        
+
+        // Print title
+        if n == 0 { println!("{}   {}", sub, spell) };
+
         for (acronym, spell_name) in binder.clone().iter() {
             if acronym.starts_with(sub) {
-                if String::from(spell_name).ne(&spell) {
+                if String::from(spell_name).ne(&spell) && sub != acronym {
                     println!("  > {}: {}", acronym, spell_name);
                 }
             }
@@ -89,5 +91,3 @@ fn find_chain(mut sign: String, spell: String, binder: HashMap<String, String>) 
     }
     println!("");
 }
-
-            //if acronym.contains(sub) { 
